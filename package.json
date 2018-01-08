@@ -1,8 +1,8 @@
 {
   "name": "log4js",
-  "version": "2.3.4",
+  "version": "2.4.1",
   "description": "Port of Log4js to work with node.",
-  "homepage": "https://nomiddlename.github.io/log4js-node/",
+  "homepage": "https://log4js-node.github.io/log4js-node/",
   "keywords": [
     "logging",
     "log",
@@ -11,24 +11,24 @@
   ],
   "license": "Apache-2.0",
   "main": "./lib/log4js",
+  "types": "./types/log4js.d.ts",
   "author": "Gareth Jones <gareth.nomiddlename@gmail.com>",
   "repository": {
     "type": "git",
-    "url": "https://github.com/nomiddlename/log4js-node.git"
+    "url": "https://github.com/log4js-node/log4js-node.git"
   },
   "bugs": {
-    "url": "http://github.com/nomiddlename/log4js-node/issues"
+    "url": "http://github.com/log4js-node/log4js-node/issues"
   },
   "engines": {
     "node": ">=4.0"
   },
   "scripts": {
     "clean": "find test -type f ! -name '*.json' ! -name '*.js' ! -name '.eslintrc' -delete && rm *.log",
-    "lint": "eslint lib/ test/",
     "prepush": "npm test",
     "commitmsg": "validate-commit-msg",
     "posttest": "npm run clean",
-    "pretest": "eslint lib/**/*",
+    "pretest": "eslint 'lib/**/*.js' 'test/**/*.js'",
     "test": "tap 'test/tap/**/*.js'",
     "coverage": "tap 'test/tap/**/*.js' --cov",
     "codecov": "tap 'test/tap/**/*.js' --cov --coverage-report=lcov && codecov"
@@ -38,23 +38,24 @@
     "lib": "lib"
   },
   "dependencies": {
-    "date-format": "^1.1.0",
-    "debug": "^2.6.8",
+    "circular-json": "^0.4.0",
+    "date-format": "^1.2.0",
+    "debug": "^3.1.0",
     "semver": "^5.3.0",
-    "streamroller": "^0.5.2"
+    "streamroller": "^0.7.0"
   },
   "devDependencies": {
-    "codecov": "^1.0.1",
-    "conventional-changelog": "^1.1.4",
-    "eslint": "^3.19.0",
-    "eslint-config-airbnb-base": "^11.2.0",
+    "codecov": "^3.0.0",
+    "conventional-changelog": "^1.1.6",
+    "eslint": "^4.10.0",
+    "eslint-config-airbnb-base": "^12.1.0",
     "eslint-import-resolver-node": "^0.3.1",
-    "eslint-plugin-import": "^2.6.1",
-    "husky": "^0.12.0",
-    "nyc": "^10.3.2",
+    "eslint-plugin-import": "^2.8.0",
+    "husky": "^0.14.3",
+    "nyc": "^11.3.0",
     "sandboxed-module": "^2.0.3",
-    "tap": "^8.0.1",
-    "validate-commit-msg": "^2.12.2"
+    "tap": "^10.7.3",
+    "validate-commit-msg": "^2.14.0"
   },
   "browser": {
     "os": false
