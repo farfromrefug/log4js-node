@@ -24,22 +24,33 @@ The following appenders are included with log4js. Some require extra dependencie
 * [dateFile](dateFile.md)
 * [file](file.md)
 * [fileSync](fileSync.md)
-* [gelf](gelf.md)
-* [hipchat](hipchat.md)
-* [logFaces-HTTP](logFaces-HTTP.md)
-* [logFaces-UDP](logFaces-UDP.md)
-* [loggly](loggly.md)
 * [logLevelFilter](logLevelFilter.md)
-* [logstashUDP](logstashUDP.md)
-* [mailgun](mailgun.md)
 * [multiFile](multiFile.md)
 * [multiprocess](multiprocess.md)
 * [recording](recording.md)
-* [redis](redis.md)
-* [slack](slack.md)
-* [smtp](smtp.md)
 * [stderr](stderr.md)
 * [stdout](stdout.md)
+* [tcp](tcp.md)
+* [tcp-server](tcp-server.md)
+
+## Optional Appenders
+
+The following appenders are supported by log4js, but are no longer distributed with log4js core from version 3 onwards.
+
+* [gelf](https://github.com/log4js-node/gelf)
+* [hipchat](https://github.com/log4js-node/hipchat)
+* [logFaces-HTTP](https://github.com/log4js-node/logFaces-HTTP)
+* [logFaces-UDP](https://github.com/log4js-node/logFaces-UDP)
+* [loggly](https://github.com/log4js-node/loggly)
+* [logstashHTTP](https://github.com/log4js-node/logstashHTTP)
+* [logstashUDP](https://github.com/log4js-node/logstashUDP)
+* [mailgun](https://github.com/log4js-node/mailgun)
+* [rabbitmq](https://github.com/log4js-node/rabbitmq)
+* [redis](https://github.com/log4js-node/redis)
+* [slack](https://github.com/log4js-node/slack)
+* [smtp](https://github.com/log4js-node/smtp)
+
+For example, if you were previously using the gelf appender (`type: 'gelf'`) then you should add `@log4js-node/gelf` to your dependencies and change the type to `type: '@log4js-node/gelf'`.
 
 ## Other Appenders
 

@@ -1,7 +1,7 @@
 'use strict';
 
 const test = require('tap').test;
-const sandbox = require('sandboxed-module');
+const sandbox = require('@log4js-node/sandboxed-module');
 const recording = require('../../lib/appenders/recording');
 
 function makeFakeNet() {
@@ -234,6 +234,14 @@ test('Multiprocess Appender', (batch) => {
 
       assert.equal(recording.replay()[0].data[0], 'this should be sent to the actual appender directly');
       assert.end();
+    });
+
+    t.test('should log the error on "error" event', (assert) => {
+      net.cbs.error(new Error('Expected error'));
+      const logEvents = recording.replay();
+      assert.plan(2);
+      assert.equal(logEvents.length, 1);
+      assert.equal('A worker log process hung up unexpectedly', logEvents[0].data[0]);
     });
 
     t.test('when a client connects', (assert) => {

@@ -1,7 +1,7 @@
 'use strict';
 
 const test = require('tap').test;
-const levels = require('../../lib/levels')();
+const levels = require('../../lib/levels');
 
 function assertThat(assert, level) {
   function assertForEach(assertion, testFn, otherLevels) {
@@ -377,12 +377,13 @@ test('levels', (batch) => {
     t.end();
   });
 
-  batch.test('toLevel', (t) => {
+  batch.test('getLevel', (t) => {
     t.equal(levels.getLevel('debug'), levels.DEBUG);
     t.equal(levels.getLevel('DEBUG'), levels.DEBUG);
     t.equal(levels.getLevel('DeBuG'), levels.DEBUG);
     t.notOk(levels.getLevel('cheese'));
     t.equal(levels.getLevel('cheese', levels.DEBUG), levels.DEBUG);
+    t.equal(levels.getLevel({ level: 10000, levelStr: 'DEBUG', colour: 'cyan' }), levels.DEBUG);
     t.end();
   });
 

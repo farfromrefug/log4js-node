@@ -2,7 +2,6 @@
 
 const test = require('tap').test;
 const os = require('os');
-const semver = require('semver');
 
 const EOL = os.EOL || '\n';
 
@@ -30,7 +29,7 @@ test('log4js layouts', (batch) => {
 
       assert.equal(
         output,
-        '\x1B[31m[2010-12-05T14:18:30.045] [ERROR] cheese - \x1B[39mnonsense'
+        '\x1B[91m[2010-12-05T14:18:30.045] [ERROR] cheese - \x1B[39mnonsense'
       );
       assert.end();
     });
@@ -47,7 +46,7 @@ test('log4js layouts', (batch) => {
           colour: 'red'
         }
       });
-      assert.equal(output, '\x1B[31m[2010-12-05T14:18:30.045] [ERROR] cheese - \x1B[39mthing 2');
+      assert.equal(output, '\x1B[91m[2010-12-05T14:18:30.045] [ERROR] cheese - \x1B[39mthing 2');
       assert.end();
     });
     t.end();
@@ -162,24 +161,13 @@ test('log4js layouts', (batch) => {
       const output = layout(event);
       const lines = output.split(/\n/);
 
-      if (semver.satisfies(process.version, '>=6')) {
-        assert.equal(lines.length, stack.length);
-        assert.equal(
-          lines[0],
-          '[2010-12-05T14:18:30.045] [DEBUG] tests - this is a test Error: Some made-up error'
-        );
-        for (i = 1; i < stack.length; i++) {
-          assert.equal(lines[i], stack[i]);
-        }
-      } else {
-        assert.equal(lines.length - 1, stack.length);
-        assert.equal(
-          lines[0],
-          '[2010-12-05T14:18:30.045] [DEBUG] tests - this is a test [Error: Some made-up error]'
-        );
-        for (i = 1; i < stack.length; i++) {
-          assert.equal(lines[i + 2], stack[i + 1]);
-        }
+      assert.equal(lines.length, stack.length);
+      assert.equal(
+        lines[0],
+        '[2010-12-05T14:18:30.045] [DEBUG] tests - this is a test Error: Some made-up error'
+      );
+      for (i = 1; i < stack.length; i++) {
+        assert.equal(lines[i], stack[i]);
       }
       assert.end();
     });
